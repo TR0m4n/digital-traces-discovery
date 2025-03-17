@@ -35,7 +35,7 @@ const Navbar = () => {
   };
 
   const handleLoginOptionClick = (provider: 'github' | 'switchedu') => {
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -47,13 +47,13 @@ const Navbar = () => {
         </div>
         
         <div className="flex flex-wrap items-center justify-center md:justify-end gap-3">
-          <Link to="/search">
+          <Link to="/">
             <Button variant="ghost" className="text-white hover:bg-dtrace-primary/80">
               <Search className="h-5 w-5 mr-2" />
               Search
             </Button>
           </Link>
-          <Link to="/browse">
+          <Link to="/">
             <Button variant="ghost" className="text-white hover:bg-dtrace-primary/80">
               <Database className="h-5 w-5 mr-2" />
               Browse
@@ -62,7 +62,7 @@ const Navbar = () => {
           
           {user ? (
             <>
-              <Link to="/submit">
+              <Link to="/">
                 <Button className="bg-dtrace-accent hover:bg-dtrace-accent/90 text-white">
                   <Plus className="h-5 w-5 mr-2" />
                   Submit Trace
@@ -80,12 +80,12 @@ const Navbar = () => {
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => navigate('/profile')}>
+                  <DropdownMenuItem onClick={() => navigate('/')}>
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
                   </DropdownMenuItem>
                   {user.role === 'admin' && (
-                    <DropdownMenuItem onClick={() => navigate('/admin')}>
+                    <DropdownMenuItem onClick={() => navigate('/')}>
                       <Shield className="mr-2 h-4 w-4" />
                       <span>Admin Panel</span>
                     </DropdownMenuItem>
