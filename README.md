@@ -1,69 +1,81 @@
-# Welcome to your Lovable project
+# Analyseur de Traces Numériques
 
-## Project info
+Une application web simple pour analyser des fichiers texte et générer des statistiques détaillées.
 
-**URL**: https://lovable.dev/projects/1bebc5a9-752b-4e73-b000-c4a4da446481
+## Fonctionnalités
 
-## How can I edit this code?
+- Upload de fichiers multiples
+- Support des formats : txt, csv, log, json, xml
+- Analyse en temps réel
+- Interface utilisateur responsive
+- Visualisation des résultats détaillée
 
-There are several ways of editing your application.
+## Prérequis
 
-**Use Lovable**
+- Node.js (v14 ou supérieur)
+- npm ou yarn
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1bebc5a9-752b-4e73-b000-c4a4da446481) and start prompting.
+## Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clonez le dépôt :
+```bash
+git clone https://github.com/votre-username/digital-traces-discovery.git
+cd digital-traces-discovery
+```
 
-**Use your preferred IDE**
+2. Installez les dépendances :
+```bash
+npm install
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. Créez un fichier `.env` à la racine du projet :
+```env
+VITE_API_URL=http://localhost:5000
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Démarrage
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+1. Lancez le serveur de développement :
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+2. Ouvrez votre navigateur et accédez à `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Utilisation
 
-**Use GitHub Codespaces**
+1. Sélectionnez un ou plusieurs fichiers à analyser
+2. Cliquez sur "Analyser les fichiers"
+3. Consultez les résultats détaillés de l'analyse
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Structure du Projet
 
-## What technologies are used for this project?
+```
+src/
+├── components/         # Composants React
+├── config/            # Configuration et constantes
+├── services/          # Services API
+├── styles/           # Fichiers CSS
+└── App.tsx           # Composant principal
+```
 
-This project is built with .
+## Technologies Utilisées
 
-- Vite
-- TypeScript
 - React
-- shadcn-ui
-- Tailwind CSS
+- TypeScript
+- Vite
+- CSS Modules
 
-## How can I deploy this project?
+## Contribution
 
-Simply open [Lovable](https://lovable.dev/projects/1bebc5a9-752b-4e73-b000-c4a4da446481) and click on Share -> Publish.
+Les contributions sont les bienvenues ! N'hésitez pas à :
 
-## I want to use a custom domain - is that possible?
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
