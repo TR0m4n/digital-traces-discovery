@@ -8,32 +8,31 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <div className="min-h-screen bg-dtrace-background flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
+      
       <main className="flex-grow container mx-auto px-4 py-8">
         {children}
       </main>
-      <footer className="bg-dtrace-primary text-white py-6">
+      
+      <footer className="bg-dtrace-primary text-white py-4">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <p className="text-sm">
-                &copy; {new Date().getFullYear()} Digital Traces Location DB
-              </p>
-              <p className="text-xs text-gray-300 mt-1">
-                A collaborative database for digital forensics research
-              </p>
-            </div>
-            <div className="flex space-x-4">
+            <p className="text-sm">
+              &copy; {currentYear} Digital Traces Location DB
+            </p>
+            <div className="flex space-x-4 mt-2 md:mt-0">
               <a href="#" className="text-gray-300 hover:text-white text-sm">About</a>
               <a href="#" className="text-gray-300 hover:text-white text-sm">Privacy</a>
-              <a href="#" className="text-gray-300 hover:text-white text-sm">Terms</a>
               <a href="#" className="text-gray-300 hover:text-white text-sm">Contact</a>
             </div>
           </div>
         </div>
       </footer>
+      
       <Toaster />
     </div>
   );
