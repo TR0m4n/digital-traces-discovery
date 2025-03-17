@@ -1,14 +1,13 @@
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Database, Code, FileText } from "lucide-react";
 import Layout from '@/components/Layout';
 import { useAuth } from '@/contexts/AuthContext';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from 'react';
 
 const Index = () => {
   const recentTraces = [
@@ -24,13 +23,17 @@ const Index = () => {
   ];
 
   const { user, isLoading } = useAuth();
-  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
 
-  useEffect(() => {
-    if (!isLoading && !user) {
-      navigate('/login');
+  // Redirect to login page is removed to allow non-authenticated users to view the homepage
+  // but with limited functionality
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchValue.trim()) {
+      window.location.href = `/search?q=${encodeURIComponent(searchValue)}`;
     }
-  }, [user, isLoading]);
+  };
 
   return (
     <Layout>
@@ -40,16 +43,18 @@ const Index = () => {
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             A collaborative repository of application data locations across different operating systems for digital forensics research
           </p>
-          <div className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-4">
+          <form onSubmit={handleSearch} className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-4">
             <Input 
               type="text" 
               placeholder="Search for an application, OS, or UID..." 
               className="bg-white/20 text-white placeholder:text-white/70 border-white/20 focus:border-white"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
-            <Button className="bg-dtrace-accent hover:bg-dtrace-accent/90">
+            <Button type="submit" className="bg-dtrace-accent hover:bg-dtrace-accent/90">
               <Search className="mr-2 h-4 w-4" /> Search
             </Button>
-          </div>
+          </form>
         </div>
       </section>
       
@@ -104,11 +109,22 @@ const Index = () => {
           Help grow our collaborative repository by submitting new digital trace locations
           or improving existing entries.
         </p>
-        <Link to="/submit">
-          <Button size="lg" className="bg-dtrace-accent text-white hover:bg-dtrace-accent/90">
-            Submit a New Trace
-          </Button>
-        </Link>
+        {user ? (
+          <Link to="/submit">
+            <Button size="lg" className="bg-dtrace-accent text-white hover:bg-dtrace-accent/90">
+              Submit a New Trace
+            </Button>
+          </Link>
+        ) : (
+          <div className="space-y-2">
+            <Link to="/login">
+              <Button size="lg" className="bg-dtrace-accent text-white hover:bg-dtrace-accent/90">
+                Login to Submit a Trace
+              </Button>
+            </Link>
+            <p className="text-sm text-gray-500 mt-2">You need to be logged in to submit traces</p>
+          </div>
+        )}
       </section>
     </Layout>
   );
