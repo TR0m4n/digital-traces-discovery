@@ -1,7 +1,7 @@
 
 import * as React from "react";
 
-// Simplify toast types
+// Simple toast types
 export type ToastProps = {
   id: string;
   title?: React.ReactNode;
@@ -70,13 +70,25 @@ export function useToast() {
 }
 
 // Simple toast function for direct use
-export const toast = (props: Omit<ToastProps, "id">) => {
-  // This is for direct imports - will use the context when available
-  if (typeof window !== "undefined") {
-    // Get the provider's toast function if available
-    const event = new CustomEvent("toast", { detail: props });
+export const toast = {
+  default: (props: Omit<ToastProps, "id" | "variant">) => {
+    const event = new CustomEvent("toast", { 
+      detail: { ...props, variant: "default" } 
+    });
     window.dispatchEvent(event);
-  }
+  },
+  success: (props: Omit<ToastProps, "id" | "variant">) => {
+    const event = new CustomEvent("toast", { 
+      detail: { ...props, variant: "success" } 
+    });
+    window.dispatchEvent(event);
+  },
+  destructive: (props: Omit<ToastProps, "id" | "variant">) => {
+    const event = new CustomEvent("toast", { 
+      detail: { ...props, variant: "destructive" } 
+    });
+    window.dispatchEvent(event);
+  },
 };
 
 // Listen for toast events
