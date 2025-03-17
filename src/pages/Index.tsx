@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,14 +23,12 @@ const Index = () => {
 
   const { user, isLoading } = useAuth();
   const [searchValue, setSearchValue] = useState('');
-
-  // Redirect to login page is removed to allow non-authenticated users to view the homepage
-  // but with limited functionality
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchValue.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchValue)}`;
+      navigate(`/search?q=${encodeURIComponent(searchValue)}`);
     }
   };
 

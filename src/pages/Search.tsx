@@ -1,15 +1,19 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search as SearchIcon } from "lucide-react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Search = () => {
-  const [query, setQuery] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const initialQuery = queryParams.get('q') || "";
+
+  const [query, setQuery] = useState(initialQuery);
   const [appFilter, setAppFilter] = useState<string>("");
   const [osFilter, setOsFilter] = useState<string>("");
   const [results, setResults] = useState<any[]>([]);
@@ -75,6 +79,13 @@ const Search = () => {
       description: "Folder containing database files and cache"
     },
   ];
+
+  // When there's an initial query from URL, perform search on component mount
+  useEffect(() => {
+    if (initialQuery) {
+      handleSearch();
+    }
+  }, [initialQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearch = () => {
     // In a real application, this would be an API call

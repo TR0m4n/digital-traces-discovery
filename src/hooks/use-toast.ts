@@ -152,12 +152,6 @@ function toast({ ...props }: Toast) {
     toast: {
       ...props,
       id,
-      onOpen: (open) => {
-        if (open) {
-          update({ ...props, id });
-        }
-      },
-      onClose: dismiss,
     },
   });
 
