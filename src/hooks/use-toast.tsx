@@ -69,7 +69,7 @@ export function useToast() {
   return context;
 }
 
-// Simple toast function for direct use
+// Toast utility for direct use
 export const toastUtils = {
   default: (props: Omit<ToastProps, "id" | "variant">) => {
     const event = new CustomEvent("toast", { 

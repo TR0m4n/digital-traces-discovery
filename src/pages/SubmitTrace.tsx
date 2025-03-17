@@ -84,7 +84,8 @@ const SubmitTrace = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    toast({
+    // Fix: use toast.success instead of calling toast directly
+    toast.success({
       title: "Trace submitted",
       description: "Thank you for your contribution! Our team will review your submission shortly.",
     });
