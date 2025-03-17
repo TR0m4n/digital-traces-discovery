@@ -70,7 +70,7 @@ export function useToast() {
 }
 
 // Simple toast function for direct use
-export const toast = {
+export const toastUtils = {
   default: (props: Omit<ToastProps, "id" | "variant">) => {
     const event = new CustomEvent("toast", { 
       detail: { ...props, variant: "default" } 
@@ -90,6 +90,9 @@ export const toast = {
     window.dispatchEvent(event);
   },
 };
+
+// Export toast as an alias of toastUtils for backward compatibility
+export const toast = toastUtils;
 
 // Listen for toast events
 if (typeof window !== "undefined") {
